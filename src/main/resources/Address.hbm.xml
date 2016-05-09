@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="model">
+    <class name="Address" table="ADDRESS">
+        <id name="id" column="ADDRESS_ID" type="java.lang.Long">
+            <generator class="native"/>
+        </id>
+        <property name="city"/>
+        <property name="street"/>
+        <property name="zipcode"/>
+
+        <one-to-one name="user"
+                    class="User"
+                    property-ref="homeAddress"/>
+    </class>
+</hibernate-mapping>

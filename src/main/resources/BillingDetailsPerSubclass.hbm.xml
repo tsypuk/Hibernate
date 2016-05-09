@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="model.inheritance.perHierarchy">
+    <class
+            name="BillingDetails"
+            table="BILLING_DETAILS">
+        <id
+                name="id"
+                column="BILLING_DETAIL_ID"
+                type="java.lang.Long">
+            <generator class="native"/>
+        </id>
+
+        <property
+                name="owner"
+                column="OWNER"
+                type="java.lang.String"/>
+        <property
+                name="lim"
+                column="LIM"
+                type="java.lang.String"/>
+
+        <joined-subclass name="CreditCard" table="CREDIT_CARD">
+            <key column="CREDIT_CARD_ID"/>
+            <property name="number" column="CC_NUMBER"/>
+        </joined-subclass>
+
+        <joined-subclass
+            name="BankAccount" table="BANK_ACCOUNT">
+            <key column="BANK_ACCOUNT_ID"/>
+            <property name="account" column="BA_ACCOUNT"/>
+            <property name="owner" column="BA_OWNER"/>
+        </joined-subclass>
+    </class>
+</hibernate-mapping>
